@@ -1,33 +1,33 @@
-import { Box, Fixed, Heading, Drawer, Toolbar, NavLink } from 'rebass'
-import { SearchBox } from 'react-instantsearch/dom'
-import { Menu, Search, X } from 'react-feather'
-import { createProvider } from 'refunk'
+import { Box, Fixed, Heading, Drawer, Toolbar, NavLink } from 'rebass';
+import { SearchBox } from 'react-instantsearch/dom';
+import { Menu, Search, X } from 'react-feather';
+import { createProvider } from 'refunk';
 
-const hoc = createProvider({ isDrawerOpen: false, isSearchOpen: false })
-const toggleDrawer = state => ({ isDrawerOpen: !state.isDrawerOpen })
-const toggleSearch = state => ({ isSearchOpen: !state.isSearchOpen })
+const hoc = createProvider({ isDrawerOpen: false, isSearchOpen: false });
+const toggleDrawer = state => ({ isDrawerOpen: !state.isDrawerOpen });
+const toggleSearch = state => ({ isSearchOpen: !state.isSearchOpen });
 
 const translations = {
-  placeholder: 'What are you looking for?'
-}
+  placeholder: 'What are you looking for?',
+};
 
 const AppBar = hoc(({ isDrawerOpen, isSearchOpen, update }) =>
   <div>
     {isDrawerOpen &&
       <Fixed top right bottom left onClick={e => update(toggleDrawer)} />}
 
-    <Drawer open={isDrawerOpen} color='white' bg='gray9'>
+    <Drawer open={isDrawerOpen} color="white" bg="gray9">
       <Heading>Hello</Heading>
     </Drawer>
 
-    <Toolbar color='blue' bg='white' py={2}>
+    <Toolbar color="blue" bg="white" py={2}>
       <NavLink>
         <Menu onClick={e => update(toggleDrawer)} />
       </NavLink>
 
-      <Box mx='auto' fontSize={[1, 2, 2]}>
+      <Box mx="auto" fontSize={[1, 2, 2]}>
         {!isSearchOpen
-          ? <NavLink fontSize={[1, 2, 2]} mx='auto' children='WINDTODAY' />
+          ? <NavLink fontSize={[1, 2, 2]} mx="auto" children="WINDTODAY" />
           : <SearchBox translations={translations} autoFocus />}
       </Box>
 
@@ -38,6 +38,6 @@ const AppBar = hoc(({ isDrawerOpen, isSearchOpen, update }) =>
       </NavLink>
     </Toolbar>
   </div>
-)
+);
 
-export default AppBar
+export default AppBar;
