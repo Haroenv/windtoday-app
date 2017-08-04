@@ -1,6 +1,6 @@
 /* global APP */
 
-import { Configure } from 'react-instantsearch/dom'
+import { Menu, CurrentRefinements, Configure } from 'react-instantsearch/dom'
 import { InstantSearch } from './Instantsearch'
 import CategoryTabs from './CategoryTabs'
 import Headroom from 'react-headroom'
@@ -33,6 +33,8 @@ export default class extends React.Component {
           <AppBar />
           <CategoryTabs attributeName='category' />
         </Headroom>
+        <CurrentRefinements />
+        <Menu attributeName='brand' />
         <Hits hitComponent={Hit} />
       </InstantSearch>
     )
