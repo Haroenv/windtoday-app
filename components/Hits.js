@@ -1,24 +1,30 @@
-import { connectInfiniteHits } from 'react-instantsearch/connectors'
-import InfiniteScroll from 'react-infinite-scroll-component'
-import styled from 'styled-components'
-import PropTypes from 'prop-types'
-import { media } from 'util/style'
-import { Component } from 'react'
-import { Box } from 'rebass'
+import { connectInfiniteHits } from 'react-instantsearch/connectors';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import { media } from 'util/style';
+import { Component } from 'react';
+import { Box } from 'rebass';
 
 const CustomBox = styled(Box)`
 ${media.large`
   max-width: 600px;
   margin: 0 auto;
 `}
-`
+`;
 
 class InfiniteHits extends Component {
-  render () {
-    const { hitComponent: ItemComponent, hits, hasMore, refine } = this.props
+  render() {
+    const {
+      hitComponent: ItemComponent,
+      hits,
+      hasMore,
+      refine,
+      onRefine,
+    } = this.props;
     const renderedHits = hits.map(hit =>
-      <ItemComponent key={hit.objectID} hit={hit} />
-    )
+      <ItemComponent key={hit.objectID} hit={hit} onRefine={onRefine} />
+    );
 
     return (
       <CustomBox>
@@ -26,7 +32,7 @@ class InfiniteHits extends Component {
           {renderedHits}
         </InfiniteScroll>
       </CustomBox>
-    )
+    );
   }
 }
 
@@ -35,7 +41,7 @@ InfiniteHits.propTypes = {
   hitComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
     .isRequired,
   hasMore: PropTypes.bool.isRequired,
-  refine: PropTypes.func.isRequired
-}
+  refine: PropTypes.func.isRequired,
+};
 
-export default connectInfiniteHits(InfiniteHits)
+export default connectInfiniteHits(InfiniteHits);
